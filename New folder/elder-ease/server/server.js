@@ -27,19 +27,37 @@ app.get('/', (req, res) => {
 require('./socket/callHandler')(io);
 
 // Database Connection
+// Database Connection & Server Listening Setup
 const PORT = process.env.PORT || 5000;
 const MONGODB_URI = process.env.MONGODB_URI || 'mongodb://localhost:27017/elder-ease';
 
-mongoose.connect(MONGODB_URI)
-  .then(() => {
+let isConnected = false;
+const connectDB = async () => {
+  if (isConnected) return;
+  try {
+    mongoose.set('strictQuery', true);
+    await mongoose.connect(MONGODB_URI);
+    isConnected = true;
     console.log('Connected to MongoDB');
+  } catch (err) {
+    console.error('MongoDB connection error:', err);
+  }
+};
+
+// Database connection middleware for Serverless environment
+app.use(async (req, res, next) => {
+  await connectDB();
+  next();
+});
+
+// For standard / local hosting (non-Vercel environment)
+if (process.env.NODE_ENV !== 'production' || !process.env.VERCEL) {
+  connectDB().then(() => {
     server.listen(PORT, () => {
       console.log(`Server is running on port ${PORT}`);
     });
-  })
-  .catch((err) => {
-    console.error('MongoDB connection error:', err);
   });
+}
 
 // Routes
 app.use('/api/auth', require('./routes/auth'));
@@ -56,3 +74,5 @@ app.use('/api/analytics', require('./routes/analytics'));
 app.use('/api/chat', require('./routes/chat'));
 app.use('/api/stories', require('./routes/stories'));
 app.use('/api/assistant', require('./routes/assistant'));
+
+module.exports = app;
