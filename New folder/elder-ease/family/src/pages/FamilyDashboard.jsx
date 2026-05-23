@@ -327,10 +327,59 @@ const FamilyDashboard = () => {
                         </>
                     ) : (
                         <>
-                            {activeTab === 'settings' ? (
-                                <FamilySettingsView user={user} showMessage={showTempMessage} />
-                            ) : (
+                            {activeTab === 'overview' && (
                                 <OnboardingEmptyState onLinkElder={() => setIsLinking(true)} />
+                            )}
+                            {activeTab === 'meds' && (
+                                <TabOnboardingEmptyState 
+                                    tabName="Medications" 
+                                    icon={<Clipboard size={32} />} 
+                                    description="No active medications. Link an elder's profile to schedule daily doses, set refill alerts, and track medication adherence logs." 
+                                    onLinkElder={() => setIsLinking(true)} 
+                                />
+                            )}
+                            {activeTab === 'appointments' && (
+                                <TabOnboardingEmptyState 
+                                    tabName="Appointments" 
+                                    icon={<Calendar size={32} />} 
+                                    description="No scheduled medical visits. Link an elder's profile to schedule doctor consultations, log care clinic locations, and set reminders." 
+                                    onLinkElder={() => setIsLinking(true)} 
+                                />
+                            )}
+                            {activeTab === 'memories' && (
+                                <TabOnboardingEmptyState 
+                                    tabName="Memory Wall" 
+                                    icon={<ImageIcon size={32} />} 
+                                    description="No memories shared yet. Link an elder's profile to upload photos, capture beautiful moments, and pin care messages directly to their device." 
+                                    onLinkElder={() => setIsLinking(true)} 
+                                />
+                            )}
+                            {activeTab === 'alerts' && (
+                                <TabOnboardingEmptyState 
+                                    tabName="Alerts Monitoring" 
+                                    icon={<Bell size={32} />} 
+                                    description="No active alert logs. Link an elder's profile to receive real-time medical updates, geofencing triggers, or emergency SOS signals instantly." 
+                                    onLinkElder={() => setIsLinking(true)} 
+                                />
+                            )}
+                            {activeTab === 'notes' && (
+                                <TabOnboardingEmptyState 
+                                    tabName="Care Notes" 
+                                    icon={<MessageSquare size={32} />} 
+                                    description="Care log is currently empty. Link an elder's profile to log daily observations, mood changes, physical metrics, and share critical updates." 
+                                    onLinkElder={() => setIsLinking(true)} 
+                                />
+                            )}
+                            {activeTab === 'routines' && (
+                                <TabOnboardingEmptyState 
+                                    tabName="Daily Routines" 
+                                    icon={<Clock size={32} />} 
+                                    description="No routines configured. Link an elder's profile to establish exercise times, schedule meals, and monitor their daily habits." 
+                                    onLinkElder={() => setIsLinking(true)} 
+                                />
+                            )}
+                            {activeTab === 'settings' && (
+                                <FamilySettingsView user={user} showMessage={showTempMessage} />
                             )}
                         </>
                     )}
@@ -1244,6 +1293,85 @@ const OnboardingEmptyState = ({ onLinkElder }) => {
                     }
                 }
             `}</style>
+        </div>
+    );
+};
+
+const TabOnboardingEmptyState = ({ tabName, icon, description, onLinkElder }) => {
+    return (
+        <div style={{
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            justifyContent: 'center',
+            padding: '60px 20px',
+            maxWidth: '650px',
+            margin: '40px auto',
+            background: 'white',
+            borderRadius: '24px',
+            border: '1px solid #e2e8f0',
+            boxShadow: '0 10px 30px rgba(0, 0, 0, 0.02)',
+            textAlign: 'center',
+            animation: 'fadeIn 0.5s ease-out'
+        }}>
+            <div style={{
+                background: 'linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%)',
+                width: '80px',
+                height: '80px',
+                borderRadius: '50%',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                marginBottom: '24px',
+                color: '#1e3a8a',
+                boxShadow: '0 8px 16px rgba(59, 130, 246, 0.05)'
+            }}>
+                {icon}
+            </div>
+
+            <h3 style={{
+                fontSize: '24px',
+                fontWeight: '800',
+                color: '#0f172a',
+                marginBottom: '10px',
+                fontFamily: "'Outfit', sans-serif"
+            }}>
+                Link Elder to Unlock {tabName}
+            </h3>
+            
+            <p style={{
+                fontSize: '15px',
+                color: '#64748b',
+                maxWidth: '480px',
+                lineHeight: '1.6',
+                marginBottom: '32px',
+                marginRight: 'auto',
+                marginLeft: 'auto'
+            }}>
+                {description}
+            </p>
+
+            <button
+                onClick={onLinkElder}
+                style={{
+                    background: 'linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%)',
+                    color: 'white',
+                    padding: '14px 32px',
+                    borderRadius: '12px',
+                    fontWeight: '700',
+                    fontSize: '15px',
+                    cursor: 'pointer',
+                    display: 'inline-flex',
+                    alignItems: 'center',
+                    gap: '8px',
+                    boxShadow: '0 10px 20px rgba(30, 58, 138, 0.15)',
+                    transition: 'all 0.2s',
+                    border: 'none'
+                }}
+                className="onboarding-cta-btn"
+            >
+                <Plus size={18} /> Link Your Elder
+            </button>
         </div>
     );
 };
