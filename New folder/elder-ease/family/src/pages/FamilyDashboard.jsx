@@ -271,7 +271,7 @@ const FamilyDashboard = () => {
                         </div>
                     )}
 
-                    {selectedElder && (
+                    {selectedElder ? (
                         <>
                             {activeTab === 'overview' && (
                                 <div>
@@ -324,6 +324,14 @@ const FamilyDashboard = () => {
                             {activeTab === 'routines' && <RoutinePage key={`rout-${refreshTrigger}`} elderId={selectedElder._id} elderName={selectedElder.name} authHeaders={authHeaders} onAdd={() => setShowAddRoutine(true)} refreshTrigger={refreshTrigger} />}
                             {activeTab === 'alerts' && <AlertsSection summary={summary} />}
                             {activeTab === 'settings' && <FamilySettingsView user={user} showMessage={showTempMessage} />}
+                        </>
+                    ) : (
+                        <>
+                            {activeTab === 'settings' ? (
+                                <FamilySettingsView user={user} showMessage={showTempMessage} />
+                            ) : (
+                                <OnboardingEmptyState onLinkElder={() => setIsLinking(true)} />
+                            )}
                         </>
                     )}
                 </main>
@@ -1040,6 +1048,205 @@ const FamilyToggle = ({ label, description, active }) => (
         </div>
     </div>
 );
+
+const OnboardingEmptyState = ({ onLinkElder }) => {
+    return (
+        <div style={{
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            justifyContent: 'center',
+            padding: '60px 20px',
+            maxWidth: '800px',
+            margin: '40px auto',
+            background: 'linear-gradient(145deg, #ffffff, #f8fafc)',
+            borderRadius: '24px',
+            border: '1px solid #e2e8f0',
+            boxShadow: '0 10px 30px rgba(0, 0, 0, 0.03)',
+            textAlign: 'center',
+            animation: 'fadeIn 0.5s ease-out'
+        }}>
+            <div style={{
+                background: 'linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%)',
+                width: '100px',
+                height: '100px',
+                borderRadius: '50%',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                marginBottom: '30px',
+                boxShadow: '0 8px 16px rgba(59, 130, 246, 0.08)',
+                position: 'relative'
+            }}>
+                <Heart size={44} color="#1e3a8a" fill="#3b82f6" style={{ animation: 'pulse 2s infinite ease-in-out' }} />
+                <Plus size={20} color="#ffffff" style={{
+                    position: 'absolute',
+                    bottom: '5px',
+                    right: '5px',
+                    background: '#10b981',
+                    borderRadius: '50%',
+                    padding: '2px',
+                    boxShadow: '0 2px 5px rgba(0,0,0,0.15)'
+                }} />
+            </div>
+
+            <h3 style={{
+                fontSize: '28px',
+                fontWeight: '800',
+                color: '#0f172a',
+                marginBottom: '12px',
+                fontFamily: "'Outfit', sans-serif"
+            }}>
+                Welcome to ElderEase Family Portal!
+            </h3>
+            
+            <p style={{
+                fontSize: '16px',
+                color: '#64748b',
+                maxWidth: '560px',
+                lineHeight: '1.6',
+                marginBottom: '40px',
+                marginRight: 'auto',
+                marginLeft: 'auto'
+            }}>
+                To start monitoring your elder's health vitals, coordinating daily medications, scheduling appointments, and sharing memories, you need to connect your family account with their profile.
+            </p>
+
+            <div style={{
+                display: 'grid',
+                gridTemplateColumns: 'repeat(3, 1fr)',
+                gap: '20px',
+                width: '100%',
+                marginBottom: '40px',
+                textAlign: 'left'
+            }} className="onboarding-steps-grid">
+                <div style={{
+                    background: '#ffffff',
+                    padding: '24px',
+                    borderRadius: '16px',
+                    border: '1px solid #e2e8f0',
+                    boxShadow: '0 4px 6px rgba(0,0,0,0.01)'
+                }}>
+                    <div style={{
+                        width: '32px',
+                        height: '32px',
+                        borderRadius: '50%',
+                        background: '#eff6ff',
+                        color: '#1e3a8a',
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        fontWeight: '800',
+                        fontSize: '14px',
+                        marginBottom: '16px'
+                    }}>1</div>
+                    <h4 style={{ fontSize: '16px', fontWeight: '700', color: '#1e293b', marginBottom: '8px' }}>Get Email</h4>
+                    <p style={{ fontSize: '13px', color: '#64748b', lineHeight: '1.4', margin: 0 }}>
+                        Ask your elder for the email address registered with their ElderEase device or app.
+                    </p>
+                </div>
+
+                <div style={{
+                    background: '#ffffff',
+                    padding: '24px',
+                    borderRadius: '16px',
+                    border: '1px solid #e2e8f0',
+                    boxShadow: '0 4px 6px rgba(0,0,0,0.01)'
+                }}>
+                    <div style={{
+                        width: '32px',
+                        height: '32px',
+                        borderRadius: '50%',
+                        background: '#eff6ff',
+                        color: '#1e3a8a',
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        fontWeight: '800',
+                        fontSize: '14px',
+                        marginBottom: '16px'
+                    }}>2</div>
+                    <h4 style={{ fontSize: '16px', fontWeight: '700', color: '#1e293b', marginBottom: '8px' }}>Send Request</h4>
+                    <p style={{ fontSize: '13px', color: '#64748b', lineHeight: '1.4', margin: 0 }}>
+                        Click the button below, enter their email, and send a secure connection request.
+                    </p>
+                </div>
+
+                <div style={{
+                    background: '#ffffff',
+                    padding: '24px',
+                    borderRadius: '16px',
+                    border: '1px solid #e2e8f0',
+                    boxShadow: '0 4px 6px rgba(0,0,0,0.01)'
+                }}>
+                    <div style={{
+                        width: '32px',
+                        height: '32px',
+                        borderRadius: '50%',
+                        background: '#eff6ff',
+                        color: '#1e3a8a',
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        fontWeight: '800',
+                        fontSize: '14px',
+                        marginBottom: '16px'
+                    }}>3</div>
+                    <h4 style={{ fontSize: '16px', fontWeight: '700', color: '#1e293b', marginBottom: '8px' }}>Stay Connected</h4>
+                    <p style={{ fontSize: '13px', color: '#64748b', lineHeight: '1.4', margin: 0 }}>
+                        Once they accept, you'll gain real-time access to their care log, routines, meds, and alert statuses.
+                    </p>
+                </div>
+            </div>
+
+            <button
+                onClick={onLinkElder}
+                style={{
+                    background: 'linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%)',
+                    color: 'white',
+                    padding: '16px 36px',
+                    borderRadius: '12px',
+                    fontWeight: '700',
+                    fontSize: '16px',
+                    cursor: 'pointer',
+                    display: 'inline-flex',
+                    alignItems: 'center',
+                    gap: '10px',
+                    boxShadow: '0 10px 20px rgba(30, 58, 138, 0.2)',
+                    transition: 'all 0.2s',
+                    border: 'none'
+                }}
+                className="onboarding-cta-btn"
+            >
+                <Plus size={20} /> Link Your First Elder
+            </button>
+
+            <style>{`
+                @keyframes pulse {
+                    0% { transform: scale(1); }
+                    50% { transform: scale(1.06); }
+                    100% { transform: scale(1); }
+                }
+                @keyframes fadeIn {
+                    from { opacity: 0; transform: translateY(12px); }
+                    to { opacity: 1; transform: translateY(0); }
+                }
+                .onboarding-cta-btn:hover {
+                    transform: translateY(-2px);
+                    box-shadow: 0 12px 24px rgba(30, 58, 138, 0.3);
+                }
+                .onboarding-cta-btn:active {
+                    transform: translateY(1px);
+                }
+                @media (max-width: 768px) {
+                    .onboarding-steps-grid {
+                        grid-template-columns: 1fr !important;
+                    }
+                }
+            `}</style>
+        </div>
+    );
+};
 
 const DashboardBoxStyle = { background: 'white', padding: '30px', borderRadius: '20px', border: '1px solid #E2E8F0', boxShadow: '0 4px 6px -1px rgba(0,0,0,0.02)' };
 const LabelStyle = { fontSize: '11px', fontWeight: '800', color: '#94A3B8', letterSpacing: '0.05em', display: 'block', marginBottom: '8px' };
