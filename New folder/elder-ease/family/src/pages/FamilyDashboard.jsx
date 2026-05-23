@@ -203,7 +203,7 @@ const FamilyDashboard = () => {
     };
 
     return (
-        <div style={{ height: '100vh', display: 'flex', background: '#F8F9FC', fontFamily: "'Outfit', sans-serif" }}>
+        <div className="family-layout-container" style={{ height: '100vh', display: 'flex', background: '#F8F9FC', fontFamily: "'Outfit', sans-serif" }}>
             {/* Call overlay */}
             <IncomingCall
                 incomingCall={incomingCall}
@@ -215,7 +215,7 @@ const FamilyDashboard = () => {
             />
 
             {/* Sidebar */}
-            <div style={{ width: '280px', background: '#FFF', borderRight: '1px solid #E2E8F0', padding: '24px', display: 'flex', flexDirection: 'column', boxShadow: '4px 0 10px rgba(0,0,0,0.02)' }}>
+            <div className="family-sidebar" style={{ width: '280px', background: '#FFF', borderRight: '1px solid #E2E8F0', padding: '24px', display: 'flex', flexDirection: 'column', boxShadow: '4px 0 10px rgba(0,0,0,0.02)' }}>
                 <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '40px' }}>
                     <div style={{ background: '#1E3A8A', padding: '8px', borderRadius: '10px' }}>
                         <Heart size={24} color="#FFF" />
@@ -240,8 +240,8 @@ const FamilyDashboard = () => {
             </div>
 
             {/* Main Content */}
-            <div style={{ flex: 1, overflowY: 'auto' }}>
-                <header style={{ padding: '20px 40px', background: '#FFF', borderBottom: '1px solid #E2E8F0', display: 'flex', justifyContent: 'space-between', alignItems: 'center', position: 'sticky', top: 0, zIndex: 10 }}>
+            <div className="family-main-content" style={{ flex: 1, overflowY: 'auto' }}>
+                <header className="family-header" style={{ padding: '20px 40px', background: '#FFF', borderBottom: '1px solid #E2E8F0', display: 'flex', justifyContent: 'space-between', alignItems: 'center', position: 'sticky', top: 0, zIndex: 10 }}>
                     <div>
                         <h2 style={{ fontSize: '24px', fontWeight: '700', color: '#1E293B', margin: 0 }}>
                             {selectedElder ? `${selectedElder.name}'s Health` : 'Family Dashboard'}
@@ -276,7 +276,7 @@ const FamilyDashboard = () => {
                             {activeTab === 'overview' && (
                                 <div>
                                     {/* AI Powered Health Insights */}
-                                    <div style={{ background: 'linear-gradient(135deg, #1E3A8A 0%, #3B82F6 100%)', padding: '30px', borderRadius: '20px', marginBottom: '40px', color: '#FFF', position: 'relative', overflow: 'hidden' }}>
+                                    <div className="family-insights-container" style={{ background: 'linear-gradient(135deg, #1E3A8A 0%, #3B82F6 100%)', padding: '30px', borderRadius: '20px', marginBottom: '40px', color: '#FFF', position: 'relative', overflow: 'hidden' }}>
                                         <Zap style={{ position: 'absolute', right: '-20px', top: '-20px', opacity: 0.1 }} size={200} />
                                         <h3 style={{ fontSize: '22px', fontWeight: '800', marginBottom: '20px', display: 'flex', alignItems: 'center', gap: '10px' }}>
                                             <Zap size={24} fill="#FFF" /> AI Health Insights
@@ -290,14 +290,14 @@ const FamilyDashboard = () => {
                                         </div>
                                     </div>
 
-                                    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '24px', marginBottom: '40px' }}>
+                                    <div className="family-stats-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '24px', marginBottom: '40px' }}>
                                         <StatCard title="Med Adherence" value={summary ? `${Math.round((summary.medsTaken / (summary.medsTaken + summary.medsDue + summary.medsMissed || 1)) * 100)}%` : '...'} color="#1E3A8A" icon={<Shield size={20} />} />
                                         <StatCard title="Routine" value={summary ? `${Math.round(summary.routinePercent)}%` : '...'} color="#10B981" icon={<Calendar size={20} />} />
                                         <StatCard title="Alerts" value={summary?.recentAlerts?.length || 0} color="#EF4444" icon={<Bell size={20} />} />
                                         <StatCard title="Last Activity" value={summary ? new Date(summary.lastActivity).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }) : '...'} color="#F59E0B" icon={<Clock size={20} />} />
                                     </div>
 
-                                    <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '24px' }}>
+                                    <div className="family-actions-grid" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '24px' }}>
                                         <DashboardBox title="Quick Actions">
                                             <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '15px' }}>
                                                 <button onClick={() => setShowAddMed(true)} style={actionBtnStyle}><Clipboard /> Add Medicine</button>
@@ -368,7 +368,7 @@ const DashboardBox = ({ title, children }) => (
 
 const Modal = ({ title, children, onClose }) => (
     <div style={{ position: 'fixed', inset: 0, background: 'rgba(15, 23, 42, 0.7)', backdropFilter: 'blur(4px)', display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 100 }}>
-        <div style={{ background: 'white', padding: '40px', borderRadius: '24px', width: '550px', boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.25)' }}>
+        <div className="modal-box" style={{ background: 'white', padding: '40px', borderRadius: '24px', width: '550px', boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.25)' }}>
             <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '30px' }}><h3 style={{ margin: 0, fontSize: '24px', fontWeight: '800', color: '#0F172A' }}>{title}</h3><XCircle onClick={onClose} style={{ cursor: 'pointer', color: '#94A3B8' }} /></div>
             {children}
         </div>

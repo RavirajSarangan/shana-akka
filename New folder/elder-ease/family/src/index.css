@@ -252,8 +252,93 @@ input, textarea, select { font-family: var(--font-sans); }
 
 /* ══════════════════════════════════════════════════════
    RESPONSIVE
-═══════════════════════════════════════════════════════ */
+   ═══════════════════════════════════════════════════════ */
 @media (max-width: 768px) {
   .container { padding: 0 var(--space-4); }
-  .modal-box  { padding: var(--space-6); }
+  .modal-box  { padding: var(--space-6) !important; width: 90% !important; border-radius: var(--radius-lg) !important; max-width: 480px !important; }
+
+  /* Responsive layout styles for FamilyDashboard */
+  .family-layout-container {
+    flex-direction: column !important;
+    height: auto !important;
+  }
+
+  .family-sidebar {
+    width: 100% !important;
+    border-right: none !important;
+    border-bottom: 1px solid var(--gray-200) !important;
+    padding: var(--space-4) !important;
+    box-shadow: var(--shadow-sm) !important;
+  }
+
+  .family-sidebar > div {
+    margin-bottom: var(--space-4) !important;
+    justify-content: center !important;
+  }
+
+  .family-sidebar nav {
+    display: flex !important;
+    flex-direction: row !important;
+    overflow-x: auto !important;
+    padding-bottom: var(--space-2) !important;
+    gap: var(--space-2) !important;
+    flex: none !important;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .family-sidebar nav::-webkit-scrollbar {
+    height: 4px;
+  }
+
+  .family-sidebar nav::-webkit-scrollbar-thumb {
+    background: var(--gray-300);
+    border-radius: var(--radius-full);
+  }
+
+  .family-sidebar nav > div {
+    margin-bottom: 0 !important;
+    white-space: nowrap !important;
+    padding: 8px 14px !important;
+  }
+
+  .family-main-content {
+    height: auto !important;
+    overflow-y: visible !important;
+  }
+
+  .family-header {
+    padding: var(--space-4) var(--space-5) !important;
+    flex-direction: column !important;
+    gap: var(--space-3) !important;
+    align-items: stretch !important;
+  }
+
+  .family-header > div {
+    display: flex !important;
+    justify-content: center !important;
+    text-align: center !important;
+  }
+
+  .family-insights-container {
+    padding: var(--space-5) !important;
+    border-radius: var(--radius-lg) !important;
+    margin-bottom: var(--space-6) !important;
+  }
+
+  .family-stats-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: var(--space-4) !important;
+    margin-bottom: var(--space-6) !important;
+  }
+
+  .family-actions-grid {
+    grid-template-columns: 1fr !important;
+    gap: var(--space-5) !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .family-stats-grid {
+    grid-template-columns: 1fr !important;
+  }
 }

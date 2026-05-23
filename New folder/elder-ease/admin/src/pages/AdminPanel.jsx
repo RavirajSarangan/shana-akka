@@ -77,9 +77,9 @@ const AdminPanel = () => {
     };
 
     return (
-        <div style={dashboardContainer}>
+        <div className="admin-layout-container" style={dashboardContainer}>
             {/* SIDEBAR */}
-            <aside style={sidebarStyle}>
+            <aside className="admin-sidebar" style={sidebarStyle}>
                 <div style={sidebarLogo}>
                     <div style={logoIcon}><Heart size={20} color="white" fill="white" /></div>
                     <span style={logoText}>ElderEase</span>
@@ -106,8 +106,8 @@ const AdminPanel = () => {
             </aside>
 
             {/* MAIN AREA */}
-            <div style={mainContentStyle}>
-                <header style={topHeaderStyle}>
+            <div className="admin-main-area" style={mainContentStyle}>
+                <header className="admin-header" style={topHeaderStyle}>
                     <h2 style={{ fontSize: '20px', fontWeight: '800' }}>Admin Dashboard / <span style={{ color: '#1E3A8A', textTransform: 'capitalize' }}>{activeTab}</span></h2>
                     <div style={{ display: 'flex', alignItems: 'center', gap: '24px' }}>
                         <div style={headerAction}><Search size={18} color="#94A3B8" /></div>
@@ -279,7 +279,7 @@ const MedicationMonitoring = ({ meds, stats, showToast }) => {
 
     return (
         <div style={fadeAnimation}>
-            <div style={metricGridStyle}>
+            <div className="admin-stats-grid" style={metricGridStyle}>
                 <MetricCard title="Adherence Rate" value="94.2%" icon={<Activity color="#1E3A8A" />} color="#1E3A8A" />
                 <MetricCard title="Missed Meds (24h)" value={stats?.alerts?.missedMeds || 0} icon={<AlertTriangle color="#EF4444" />} color="#EF4444" isAlert />
                 <MetricCard title="Low Stock Assets" value={meds.filter(m => m.stock < m.refillThreshold).length} icon={<Zap color="#F59E0B" />} color="#F59E0B" />
@@ -424,7 +424,7 @@ const DashboardHome = ({ stats, analytics }) => (
             <div><h3 style={{ fontSize: '24px', fontWeight: '800' }}>Platform Overview</h3><p style={{ color: '#64748B' }}>Monitoring health and security for {stats?.users?.elders || 0} elders.</p></div>
             <div style={lastLoginBadge}><Clock size={12} /> Live Status: Operational</div>
         </div>
-        <div style={metricGridStyle}>
+        <div className="admin-stats-grid" style={metricGridStyle}>
             <MetricCard title="Total Elders" value={stats?.users?.elders || 0} icon={<Heart fill="#1E3A8A" stroke="#1E3A8A" size={24} />} color="#1E3A8A" />
             <MetricCard title="Alerts Today" value={stats?.alerts?.totalToday || 0} icon={<ShieldAlert size={24} />} color="#EF4444" isAlert />
             <MetricCard title="Missed Meds" value={stats?.alerts?.missedMeds || 0} icon={<Pill size={24} />} color="#F59E0B" />

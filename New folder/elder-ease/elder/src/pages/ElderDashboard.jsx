@@ -139,7 +139,7 @@ const ElderDashboard = () => {
         <div style={{ minHeight: '100vh', background: 'linear-gradient(160deg, #F8FAFC 0%, #F1F5F9 40%, #E2E8F0 100%)', paddingBottom: '200px' }}>
 
             {/* ── TOP BAR ─────────────────────────────────────── */}
-            <div style={{
+            <div className="elder-top-bar" style={{
                 background: 'rgba(255,255,255,0.88)', backdropFilter: 'blur(12px)',
                 borderBottom: '1px solid rgba(30,58,138,0.1)',
                 padding: '0 32px', height: '72px',
@@ -210,7 +210,7 @@ const ElderDashboard = () => {
             </div>
 
             {/* ── STAT SUMMARY ─────────────────────────────────── */}
-            <div style={{ maxWidth: '720px', margin: '0 auto 40px', padding: '0 24px', display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '16px' }}>
+            <div className="elder-stats-grid" style={{ maxWidth: '720px', margin: '0 auto 40px', padding: '0 24px', display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '16px' }}>
                 {[
                     { label: 'Medications', value: stats.medications, icon: '💊', color: '#1E3A8A', bg: '#E0E7FF' },
                     { label: 'Tasks Today', value: stats.routines, icon: '📅', color: '#1E3A8A', bg: '#E0E7FF' },
@@ -305,7 +305,7 @@ const ElderDashboard = () => {
             </div>
 
             {/* ── SOS BUTTON ────────────────────────────────────── */}
-            <button onClick={handleSOS} style={{
+            <button className="elder-sos-btn" onClick={handleSOS} style={{
                 position: 'fixed', top: '88px', left: '24px', zIndex: 100,
                 background: 'white', border: '4px solid #1E3A8A',
                 borderRadius: '18px', padding: '14px 22px',
@@ -320,7 +320,7 @@ const ElderDashboard = () => {
             </button>
 
             {/* ── VOICE ASSISTANT ────────────────────────────────── */}
-            <div style={{ position: 'fixed', bottom: '32px', left: '50%', transform: 'translateX(-50%)', zIndex: 100, display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '10px' }}>
+            <div className="elder-voice-assistant" style={{ position: 'fixed', bottom: '32px', left: '50%', transform: 'translateX(-50%)', zIndex: 100, display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '10px' }}>
                 {lastCommand && (
                     <div style={{
                         background: 'rgba(30,58,138,0.9)', color: 'white',

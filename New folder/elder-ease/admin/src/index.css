@@ -414,12 +414,102 @@ input, select, textarea { font-family: var(--font-sans); }
 
 /* ══════════════════════════════════════════════════════
    RESPONSIVE
-═══════════════════════════════════════════════════════ */
+   ═══════════════════════════════════════════════════════ */
 @media (max-width: 1024px) {
   .admin-table { font-size: 12px; }
   .admin-table th, .admin-table td { padding: 10px 12px; }
 }
 
 @media (max-width: 768px) {
-  .admin-modal { padding: 24px 20px; }
+  .admin-modal { padding: 24px 16px !important; width: 95% !important; max-width: 440px !important; }
+
+  /* Responsive layout styles for AdminPanel */
+  .admin-layout-container {
+    flex-direction: column !important;
+    height: auto !important;
+  }
+
+  .admin-sidebar {
+    width: 100% !important;
+    border-right: none !important;
+    border-bottom: 1px solid var(--border) !important;
+    padding: 16px !important;
+    height: auto !important;
+    box-shadow: var(--shadow-sm) !important;
+  }
+
+  .admin-sidebar nav {
+    display: flex !important;
+    flex-direction: row !important;
+    overflow-x: auto !important;
+    gap: 8px !important;
+    padding-bottom: 6px !important;
+    flex: 1 !important;
+    margin-top: 16px !important;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .admin-sidebar nav::-webkit-scrollbar {
+    height: 4px;
+  }
+
+  .admin-sidebar nav::-webkit-scrollbar-thumb {
+    background: var(--border);
+    border-radius: var(--radius-full);
+  }
+
+  /* Hide sidebar nav section dividers on mobile */
+  .admin-sidebar nav > div:not([style*="cursor"]) {
+    display: none !important;
+  }
+
+  .admin-sidebar nav > div {
+    margin-bottom: 0 !important;
+    white-space: nowrap !important;
+    padding: 8px 12px !important;
+  }
+
+  .admin-main-area {
+    height: auto !important;
+    overflow-y: visible !important;
+  }
+
+  .admin-header {
+    padding: 16px var(--radius-lg) !important;
+    flex-direction: column !important;
+    gap: 12px !important;
+    align-items: stretch !important;
+    height: auto !important;
+  }
+
+  .admin-header h2 {
+    text-align: center !important;
+  }
+
+  .admin-header > div {
+    justify-content: center !important;
+  }
+
+  .admin-stats-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 16px !important;
+    margin-bottom: 24px !important;
+  }
+
+  /* Make tables swipe-scrollable horizontally on mobile */
+  .admin-card {
+    padding: 16px !important;
+    overflow-x: auto !important;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .admin-table {
+    min-width: 600px !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .admin-stats-grid {
+    grid-template-columns: 1fr !important;
+  }
 }
