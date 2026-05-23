@@ -2,7 +2,7 @@
   "rewrites": [
     {
       "source": "/api/:path*",
-      "destination": "https://shana-akka-backend.vercel.app/api/:path*"
+      "destination": "https://server-ashy-pi-96.vercel.app/api/:path*"
     },
     {
       "source": "/((?!api).*)",

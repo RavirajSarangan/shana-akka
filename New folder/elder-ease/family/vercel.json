@@ -2,11 +2,11 @@
   "rewrites": [
     {
       "source": "/api/:path*",
-      "destination": "https://shana-akka-backend.vercel.app/api/:path*"
+      "destination": "https://server-ashy-pi-96.vercel.app/api/:path*"
     },
     {
       "source": "/socket.io/:path*",
-      "destination": "https://shana-akka-backend.vercel.app/socket.io/:path*"
+      "destination": "https://server-ashy-pi-96.vercel.app/socket.io/:path*"
     },
     {
       "source": "/((?!api|socket.io).*)",
