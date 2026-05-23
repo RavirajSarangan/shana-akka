@@ -1,0 +1,85 @@
+:root {
+    --primary: #0EA5E9;
+    /* Soft Blue/Teal */
+    --primary-foreground: #ffffff;
+    --background: #F8FAFC;
+    /* Off-white / Light Gray */
+    --foreground: #0F172A;
+    --card: #ffffff;
+    --card-foreground: #1E293B;
+    --muted: #F1F5F9;
+    --muted-foreground: #64748B;
+    --border: #E2E8F0;
+    --input: #E2E8F0;
+    --ring: #0EA5E9;
+
+    /* Semantic Colors */
+    --emergency: #EF4444;
+    /* Red */
+    --missed: #F59E0B;
+    /* Amber */
+    --success: #10B981;
+    /* Green */
+    --info: #3B82F6;
+
+    --radius: 12px;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    color: var(--foreground);
+    background-color: var(--background);
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+}
+
+.admin-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 24px;
+    box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+    transition: all 0.2s ease;
+}
+
+.admin-card:hover {
+    box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+}
+
+h1,
+h2,
+h3,
+h4 {
+    color: var(--foreground);
+    font-weight: 700;
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--border);
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--muted-foreground);
+}
+
+/* Selection */
+::selection {
+    background-color: var(--primary);
+    color: white;
+}
